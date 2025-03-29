@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Obada_Shop.API.Data;
 using Obada_Shop.API.Services;
+using Obada_Shop.API.ServicesLayer;
 using Scalar.AspNetCore;
 
 namespace Obada_Shop.API
@@ -20,6 +21,9 @@ namespace Obada_Shop.API
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection")));
+
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<IBrandService, BrandService>();
 
             var app = builder.Build();
 

@@ -5,6 +5,8 @@ namespace Obada_Shop.API.Data
 {
     public class ApplicationDbContext : DbContext
     {
+        internal object brands;
+
         public ApplicationDbContext()
         {
         }
@@ -14,5 +16,6 @@ namespace Obada_Shop.API.Data
         {
         }
         public DbSet<Category> categories { get; set; }
+        public DbSet<Brand> Brands { get; set; }
     }
 }
