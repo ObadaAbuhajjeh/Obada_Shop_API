@@ -11,8 +11,8 @@ using Obada_Shop.API.Data;
 namespace Obada_Shop.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250326012714_Brands")]
-    partial class Brands
+    [Migration("20250402155337_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,7 +45,7 @@ namespace Obada_Shop.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("brands");
+                    b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("Obada_Shop.API.Model.Category", b =>
@@ -114,7 +114,7 @@ namespace Obada_Shop.API.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Obada_Shop.API.Model.Product", b =>

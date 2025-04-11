@@ -111,7 +111,7 @@ namespace Obada_Shop.API.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Obada_Shop.API.Model.Product", b =>

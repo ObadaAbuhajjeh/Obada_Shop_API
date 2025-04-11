@@ -24,6 +24,8 @@ namespace Obada_Shop.API
 
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<IBrandService, BrandService>();
+            builder.Services.AddScoped<IProductService, ProductService>();
+
 
             var app = builder.Build();
 

@@ -17,5 +17,11 @@ namespace Obada_Shop.API.Data
         }
         public DbSet<Category> categories { get; set; }
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<Product> Products { get; set; }
+
+        internal object Edit(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
