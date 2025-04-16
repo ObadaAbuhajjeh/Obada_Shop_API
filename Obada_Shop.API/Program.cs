@@ -1,6 +1,9 @@
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Obada_Shop.API.Data;
+using Obada_Shop.API.Model;
 using Obada_Shop.API.Services;
 using Obada_Shop.API.ServicesLayer;
 using Scalar.AspNetCore;
@@ -9,6 +12,9 @@ namespace Obada_Shop.API
 {
     public class Program
     {
+        private static object options;
+        private static object services;
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -25,7 +31,12 @@ namespace Obada_Shop.API
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<IBrandService, BrandService>();
             builder.Services.AddScoped<IProductService, ProductService>();
-
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = false;
+            })
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
             var app = builder.Build();
 

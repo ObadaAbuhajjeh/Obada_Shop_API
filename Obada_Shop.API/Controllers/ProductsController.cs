@@ -17,9 +17,20 @@ namespace Obada_Shop.API.Controllers
         private readonly IProductService productService = productService;
 
         [HttpGet("")]
-        public IActionResult GetAll()
+        public IActionResult GetAll([FromQuery] string? query, [FromQuery] int page, [FromQuery] int limit = 10)
         {
-            var products = productService.GetAll();
+            IQueryable<Product>products = (IQueryable<Product>)productService.GetAll();
+            if (query != null)
+            {
+                products = products.Where(Product => Product.Name.Contains(query) || Product.Description.Contains(query));
+            }
+            if (page <= 0 || limit <= 0)
+            {
+                page = 1;
+                limit = 10;
+            }
+            products = products.Skip( (page-1) * limit).Take(limit);
+
             return Ok(products.Adapt<IEnumerable<ProductResponse>>());
         }
 
